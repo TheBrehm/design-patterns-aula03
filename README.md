@@ -1,16 +1,9 @@
-# Atividade
+# Atividade 01: ColumnData de Usuários
 
-Vamos separar nossas classes em diferentes responsabilidades através do padrão de projetos Adapter.
----
+Resolução individual da atividade de Padrões de Projeto da PUCPR.
 
-## 🎯 Objetivo da Atividade
+Implementação das colunas de ID, CPF, e-mail e nome utilizando `ColumnData<User>` e `ColumnTableData<T>`.
 
-1. Crie a interface br.pucpr.table.TableData para representar os dados de uma tabela (TableData)
-2. Refatore as classes UsersPrinter e PlanetasPrinter para ter uma única classe Table
-3. A largura da coluna será dada pela largura do seu cabeçalho.
+**Execução:** Java 21. Execute `br.pucpr.Main` no IntelliJ IDEA ou `gradlew.bat run` no Windows.
 
----
-
-## 🛠️ Requisitos para Execução
-
-* **Linguagem:** Java 17 ou superior
+A tabela de usuários apresenta tratamento para nomes ausentes, e-mails sem `@` e CPFs com formato inválido.
