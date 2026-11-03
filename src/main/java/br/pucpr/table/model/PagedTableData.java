@@ -1,10 +1,14 @@
 package br.pucpr.table.model;
 
 import br.pucpr.table.TableData;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-public final class PagedTableData implements TableData {
+public final class PagedTableData implements ObservableTableData {
     private final TableData original;
     private final int pageSize;
+    private final List<DataChangedObserver> observers = new ArrayList<>();
     private int page;
 
     public PagedTableData(TableData original, int pageSize) {
@@ -16,6 +20,18 @@ public final class PagedTableData implements TableData {
         }
         this.original = original;
         this.pageSize = pageSize;
+        if (original instanceof ObservableTableData observable) {
+            observable.addObserver(this::onOriginalChanged);
+        }
+    }
+
+    private void onOriginalChanged() {
+        if (pageCount() == 0) {
+            page = 0;
+        } else if (page >= pageCount()) {
+            page = pageCount() - 1;
+        }
+        notifyObservers();
     }
 
     public int pageCount() {
@@ -30,7 +46,10 @@ public final class PagedTableData implements TableData {
         if (page < 0 || page >= pageCount()) {
             throw new IndexOutOfBoundsException("Página inválida: " + page);
         }
-        this.page = page;
+        if (this.page != page) {
+            this.page = page;
+            notifyObservers();
+        }
     }
 
     @Override
@@ -54,5 +73,21 @@ public final class PagedTableData implements TableData {
             throw new IndexOutOfBoundsException("Linha inválida: " + row);
         }
         return original.get(page * pageSize + row, col);
+    }
+
+    @Override
+    public void addObserver(DataChangedObserver observer) {
+        observers.add(Objects.requireNonNull(observer));
+    }
+
+    @Override
+    public void removeObserver(DataChangedObserver observer) {
+        observers.remove(observer);
+    }
+
+    private void notifyObservers() {
+        for (var observer : List.copyOf(observers)) {
+            observer.onTableChange();
+        }
     }
 }

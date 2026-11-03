@@ -1,16 +1,17 @@
-# Atividade 02: Paginação
+# Atividade 03: Notificação de mudanças
 
-Solução de paginação genérica usando o padrão Decorator.
+Implementação do padrão Observer para atualizar a saída de uma tabela ou outros componentes quando seus dados mudam.
 
-## Requisitos atendidos
+## Componentes
 
-- Aplica-se a qualquer implementação de `TableData`.
-- Não altera nem estende a classe `Table`.
-- Pode ser aplicada a futuras implementações de `TableData`.
-- Página inicial 0; navegação com `setPage(int)`.
+- `DataChangedObserver`: contrato do observador.
+- `ObservableTableData`: dados de tabela que permitem inscrição/cancelamento de observadores.
+- `ColumnTableData<T>`: notifica ao adicionar, atualizar ou remover registros.
+- `PagedTableData`: notifica ao trocar de página e propaga alterações da tabela original.
+- `Main`: demonstra a atualização automática com `userTable::print` e um segundo observador.
+
+A classe `Table` permanece inalterada.
 
 ## Execução
 
-Java 21. Execute `br.pucpr.Main` no IntelliJ IDEA ou `gradlew.bat run`.
-
-O programa mostra a tabela de usuários em três páginas e também uma versão paginada da tabela de planetas.
+Java 21. Execute `br.pucpr.Main` no IntelliJ IDEA ou `gradlew.bat run` no Windows.
