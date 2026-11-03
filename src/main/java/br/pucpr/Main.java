@@ -6,8 +6,8 @@ import static br.pucpr.table.Theme.LIGHT;
 import br.pucpr.planet.Planet;
 import br.pucpr.planet.PlanetsTableData;
 import br.pucpr.table.Table;
-import br.pucpr.user.User;
-import br.pucpr.user.UsersTableData;
+import br.pucpr.user.*;
+import br.pucpr.table.model.ColumnTableData;
 
 import java.util.ArrayList;
 
@@ -83,7 +83,7 @@ public class Main {
         );
 
         new Table(
-                new UsersTableData(usuarios),
+                new ColumnTableData<>(usuarios, new IdColumn(), new CpfColumn(), new EmailColumn(), new NameColumn()),
                 LIGHT,
                 true
         ).print();
