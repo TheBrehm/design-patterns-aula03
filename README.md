@@ -1,9 +1,16 @@
-# Atividade 01: ColumnData de Usuários
+# Atividade 02: Paginação
 
-Resolução individual da atividade de Padrões de Projeto da PUCPR.
+Solução de paginação genérica usando o padrão Decorator.
 
-Implementação das colunas de ID, CPF, e-mail e nome utilizando `ColumnData<User>` e `ColumnTableData<T>`.
+## Requisitos atendidos
 
-**Execução:** Java 21. Execute `br.pucpr.Main` no IntelliJ IDEA ou `gradlew.bat run` no Windows.
+- Aplica-se a qualquer implementação de `TableData`.
+- Não altera nem estende a classe `Table`.
+- Pode ser aplicada a futuras implementações de `TableData`.
+- Página inicial 0; navegação com `setPage(int)`.
 
-A tabela de usuários apresenta tratamento para nomes ausentes, e-mails sem `@` e CPFs com formato inválido.
+## Execução
+
+Java 21. Execute `br.pucpr.Main` no IntelliJ IDEA ou `gradlew.bat run`.
+
+O programa mostra a tabela de usuários em três páginas e também uma versão paginada da tabela de planetas.
