@@ -1,16 +1,16 @@
-# Atividade
+# Atividade 02: Paginação
 
-Vamos separar nossas classes em diferentes responsabilidades através do padrão de projetos Adapter.
----
+Solução de paginação genérica usando o padrão Decorator.
 
-## 🎯 Objetivo da Atividade
+## Requisitos atendidos
 
-1. Crie a interface br.pucpr.table.TableData para representar os dados de uma tabela (TableData)
-2. Refatore as classes UsersPrinter e PlanetasPrinter para ter uma única classe Table
-3. A largura da coluna será dada pela largura do seu cabeçalho.
+- Aplica-se a qualquer implementação de `TableData`.
+- Não altera nem estende a classe `Table`.
+- Pode ser aplicada a futuras implementações de `TableData`.
+- Página inicial 0; navegação com `setPage(int)`.
 
----
+## Execução
 
-## 🛠️ Requisitos para Execução
+Java 21. Execute `br.pucpr.Main` no IntelliJ IDEA ou `gradlew.bat run`.
 
-* **Linguagem:** Java 17 ou superior
+O programa mostra a tabela de usuários em três páginas e também uma versão paginada da tabela de planetas.
